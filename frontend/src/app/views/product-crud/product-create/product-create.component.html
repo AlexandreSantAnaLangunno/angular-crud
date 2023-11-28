@@ -1,4 +1,10 @@
-<p >product-create works!</p>
-<button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-    <mat-icon>delete</mat-icon>
-  </button>
+<p>product-create works!</p>
+<div layout="column" class="box">
+    <button mat-raised-button (click)="createProduct()" color="primary"> Cadastrar novo produto</button>
+    <button mat-fab color="warn" (click)="cancel()" matTooltip="Cancelar"
+        aria-label="Example icon button with a delete icon">
+        <span class="material-symbols-outlined">
+            close
+        </span>
+    </button>
+</div>

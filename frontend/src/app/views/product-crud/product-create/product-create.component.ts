@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 import { ProductService } from '../../../components/product/product.service';
 import { Router } from '@angular/router';
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-product-create',
     standalone: true,
-    imports: [CommonModule, MatButtonModule, MatIconModule],
+    imports: [CommonModule, MatButtonModule, MatIconModule, MatTooltipModule],
     templateUrl: './product-create.component.html',
     styleUrl: './product-create.component.less'
 })
@@ -39,7 +41,11 @@ export class ProductCreateComponent implements OnInit {
     }
 
     cancel():void{
-        this.router.navigate(['/products'])
+        this.productService.showMessage('Operação cancelada')
+        setTimeout(() => {
+            this.router.navigate(['/products'])
+          }, 3000);
+        
     }
 
 }
