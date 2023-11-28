@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Bem vindo!</mat-card-title>
+        <mat-card-subtitle>Sistema de testes</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        {{longText}}
+        <div appRed>Bombasta</div>
+        <ul>
+            <li *appFor="let n em [1,2,3]">{{ n }}</li>
+        </ul>
+
+    </mat-card-content>
+</mat-card>
+<br>
