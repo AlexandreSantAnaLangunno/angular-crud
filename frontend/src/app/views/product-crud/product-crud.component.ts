@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ProductReadComponent } from './product-read/product-read.component';
 
 
 @Component({
     selector: 'app-product-crud',
     standalone: true,
-    imports: [CommonModule, MatButtonModule],
+    imports: [CommonModule, MatButtonModule, ProductReadComponent],
     templateUrl: './product-crud.component.html',
     styleUrl: './product-crud.component.less'
 })
