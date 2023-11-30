@@ -1,0 +1,23 @@
+<p>product-update works!</p>
+
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Nome do Produto</mat-label>
+        <input matInput placeholder="Digite o nome do Produto" [(ngModel)]="product.name" name="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Preço do Produto</mat-label>
+        <input matInput placeholder="Qual o valor do produto" [(ngModel)]="product.price" name="price" />
+    </mat-form-field>
+    <div layout="column" class="box">
+        <button mat-raised-button (click)="updateProduct()" color="primary"> Atualizar novo produto</button>
+        <button mat-fab color="warn" (click)="cancel()" matTooltip="Cancelar"
+            aria-label="Example icon button with a delete icon">
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </button>
+    </div>
+</form>

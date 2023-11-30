@@ -1,16 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { ProductService } from '../../../components/product/product.service';
 import { Product } from '../product.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
+import { MatButtonModule } from '@angular/material/button';
+import { TableProductComponent } from './table-product/table-product.component';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+
+import { Router } from '@angular/router';
+
+
+
+registerLocaleData(localePt);
 
 @Component({
     selector: 'app-product-read',
     standalone: true,
-    imports: [CommonModule, MatTableModule],
+    imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule, TableProductComponent, RouterModule],
     templateUrl: './product-read.component.html',
-    styleUrl: './product-read.component.less'
+    styleUrl: './product-read.component.less',
+    providers: [{
+        provide: LOCALE_ID,
+        useValue: 'pt-BR'
+    }]
 })
 
 export class ProductReadComponent implements OnInit {
@@ -18,17 +37,34 @@ export class ProductReadComponent implements OnInit {
 
     products: Product[] = []; // Change the type to Product[]
     dataSource = new MatTableDataSource<Product>(this.products); // Initialize with an empty array
+    paginator: MatPaginator | undefined;
+    sort: MatSort | undefined;
 
-    constructor(private productService: ProductService) {
+
+
+    constructor(private productService: ProductService, private router: Router) {
         this.products = []; // Initialize the 'products' property with an empty array
 
     }
+
+
     ngOnInit(): void {
         this.productService.read().subscribe(products => {
             this.products = products as unknown as Product[];
+        })
 
-            console.log(this.products)
+    }
+    displayedColumns: string[] = ['id', 'name', 'price', 'action'];
+
+
+    deleteProduct(id: string): void {
+
+        console.log(id)
+        this.productService.delete(id).subscribe(products => {
+            this.productService.showMessage('Produto deletado com sucesso');
+            this.router.navigateByUrl('/products');
+
         })
     }
-    displayedColumns: string[] = ['id', 'name', 'price'];
+
 }
