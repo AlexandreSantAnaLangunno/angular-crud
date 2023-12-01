@@ -57,12 +57,12 @@ export class ProductReadComponent implements OnInit {
     displayedColumns: string[] = ['id', 'name', 'price', 'action'];
 
 
-    deleteProduct(id: string): void {
+    deleteProduct(id: any): void {
 
-        console.log(id)
         this.productService.delete(id).subscribe(products => {
+            this.products = this.products.filter(product => product.id !== id);
+            this.dataSource.data = this.products;
             this.productService.showMessage('Produto deletado com sucesso');
-            this.router.navigateByUrl('/products');
 
         })
     }
