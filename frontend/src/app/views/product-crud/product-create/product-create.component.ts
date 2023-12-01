@@ -11,19 +11,20 @@ import { Product } from '../product.model';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { HeaderService } from '../../../components/template/header/header.service';
 
 
 @Component({
     selector: 'app-product-create',
     standalone: true,
     imports: [
-        CommonModule, 
-        MatButtonModule, 
-        MatIconModule, 
-        MatTooltipModule, 
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
         HttpClientModule,
         MatInputModule,
         MatFormFieldModule,
@@ -48,8 +49,16 @@ export class ProductCreateComponent implements OnInit {
      */
     constructor(
         private productService: ProductService,
-        private router: Router
-    ) { }
+        private router: Router,
+        private headerService: HeaderService
+    ) {
+        headerService.HeaderData = {
+            title: 'Crie um novo produto',
+            icon: 'home',
+            routeUrl: '/'
+        }
+
+    }
     /**
      * Método do ciclo de vida chamado após a inicialização do componente
      */

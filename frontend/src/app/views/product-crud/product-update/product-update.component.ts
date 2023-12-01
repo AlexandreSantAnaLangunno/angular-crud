@@ -14,6 +14,7 @@ import { Product } from '../product.model';
 
 import { ProductService } from '../../../components/product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HeaderService } from '../../../components/template/header/header.service';
 
 
 
@@ -38,8 +39,16 @@ export class ProductUpdateComponent implements OnInit {
     constructor(
         private productService: ProductService,
         private router: Router,
-        private route: ActivatedRoute
-    ) { }
+        private route: ActivatedRoute,
+        private headerService: HeaderService
+    ) { 
+
+        headerService.HeaderData = {
+            title: 'Edite o seu produto',
+            icon: 'edit',
+            routeUrl: '/'
+        }
+    }
 
     ngOnInit(): void {
         const idProduct = this.route.snapshot.paramMap.get('id');

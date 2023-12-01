@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 
 
 import { Router } from '@angular/router';
+import { HeaderService } from '../../../components/template/header/header.service';
 
 
 
@@ -42,8 +43,18 @@ export class ProductReadComponent implements OnInit {
 
 
 
-    constructor(private productService: ProductService, private router: Router) {
+    constructor(
+        private productService: ProductService,
+        private router: Router,
+        private headerService: HeaderService
+    ) {
         this.products = []; // Initialize the 'products' property with an empty array
+
+        headerService.HeaderData = {
+            title: 'Lista de Produtos',
+            icon: 'inventory_2',
+            routeUrl: '/'
+        }
 
     }
 
